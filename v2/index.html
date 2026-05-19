@@ -10,8 +10,7 @@
 </head>
 <body>
 
-  <!-- Status bar appears AFTER boot animation completes (JS).
-       No-JS: hidden via <noscript> below -->
+  <!-- Status bar (revealed after boot animation, via JS) -->
   <div class="status-bar" id="status-bar" aria-hidden="true" hidden>
     <span class="status-dot">●</span>
     <span class="status-host">session: sai-archiv</span>
@@ -23,242 +22,268 @@
     </button>
   </div>
 
-  <main class="terminal" id="terminal">
+  <main class="page" id="terminal">
 
-    <!-- ─── BOOT LOG ────────────────────────────────────────────── -->
-    <section class="boot" aria-label="System boot log">
-      <header class="banner" aria-hidden="true">
-        ── BOOT LOG ───────────────────────────────────────────────
-      </header>
-      <h2 class="visually-hidden">Boot log</h2>
+    <!-- ════ FULL-WIDTH TOP BAND: BOOT + NAV ════════════════════ -->
+    <div class="top-band">
 
-      <pre class="boot-stream" id="boot-stream"><span class="boot-line"><span class="ok">[ OK   ]</span>  power-on self test</span>
+      <section class="panel boot" aria-label="System boot log" data-label="BOOT.LOG">
+        <pre class="boot-stream" id="boot-stream"><span class="boot-line"><span class="ok">[ OK   ]</span>  power-on self test</span>
 <span class="boot-line"><span class="ok">[ OK   ]</span>  mounting <span class="path">/archive/sai-heidelberg</span></span>
 <span class="boot-line"><span class="info">[ INFO ]</span>  record: <span class="hl">KUMAR, SRAJIT M.</span></span>
-<span class="boot-line"><span class="info">[ INFO ]</span>  funding token: <span class="hl">DAAD</span> ........................ <span class="ok-text">valid</span></span>
-<span class="boot-line"><span class="ok">[ OK   ]</span>  profile loaded — dept. of history, south asia institute</span>
+<span class="boot-line"><span class="info">[ INFO ]</span>  funding token: <span class="hl">DAAD</span> .................. <span class="ok-text">valid</span></span>
+<span class="boot-line"><span class="ok">[ OK   ]</span>  profile loaded — dept. of history, sai heidelberg</span>
 <span class="boot-line"><span class="dotted">[  ..  ]</span>  last indexed: <span class="dim" id="last-indexed">19 May 2026</span></span>
 <span class="boot-line prompt-line"><span class="prompt">guest@sai-archiv:~$</span> <span class="cursor">_</span></span></pre>
+        <button type="button" id="boot-skip" class="boot-skip" hidden>[ skip ]</button>
+      </section>
 
-      <button type="button" id="boot-skip" class="boot-skip" hidden>[ skip ]</button>
-    </section>
-
-    <!-- ─── NAV / COMMAND LINKS ─────────────────────────────────── -->
-    <nav class="cmd-nav" aria-label="Sections">
-      <span class="prompt" aria-hidden="true">guest@sai-archiv:~$</span>
-      <ul>
-        <li><a href="#about"    data-cmd="cat about.txt">about</a></li>
-        <li><a href="#research" data-cmd="ls research/">research</a></li>
-        <li><a href="#talks"    data-cmd="cat talks.log">talks</a></li>
-        <li><a href="#writing"  data-cmd="ls writing/">writing</a></li>
-        <li><a href="#contact"  data-cmd="finger srajit">contact</a></li>
-        <li><a href="../cv.pdf" data-cmd="open cv.pdf" target="_blank" rel="noopener">cv</a></li>
-      </ul>
-    </nav>
-
-    <!-- ─── WHOIS / IDENTITY BLOCK ─────────────────────────────── -->
-    <section class="whois" aria-labelledby="whois-h">
-      <header class="banner" aria-hidden="true">── WHOIS ──────────────────────────────────────────────────</header>
-      <h2 id="whois-h" class="visually-hidden">Identity</h2>
-
-      <div class="whois-grid">
-        <figure class="portrait-frame">
-          <img src="../images/srajit.jpg" alt="Portrait photograph of Srajit M. Kumar" class="portrait" />
-          <figcaption class="img-caption" aria-hidden="true">[ IMG 01 ]  KUMAR_S.jpg</figcaption>
-        </figure>
-
-        <dl class="kv">
-          <div><dt>name</dt>    <dd><strong>Srajit M. Kumar</strong></dd></div>
-          <div><dt>role</dt>    <dd>PhD candidate, Dept. of History</dd></div>
-          <div><dt>org</dt>     <dd>South Asia Institute, Heidelberg University</dd></div>
-          <div><dt>advisor</dt> <dd>Prof. Dr. Kama Maclean</dd></div>
-          <div><dt>funding</dt> <dd>DAAD PhD scholarship</dd></div>
-          <div><dt>prior</dt>   <dd>MA History, Univ. of Delhi (2022) · BA History, Jamia Millia Islamia (2020)</dd></div>
-          <div><dt>fields</dt>  <dd>labour history · partition · communalism · C18 South Asia · urban Delhi</dd></div>
-        </dl>
-      </div>
-    </section>
-
-    <!-- ─── ABOUT ──────────────────────────────────────────────── -->
-    <section id="about" class="cmd-section">
-      <div class="cmd-echo" aria-hidden="true"><span class="prompt">guest@sai-archiv:~$</span> <span class="cmd">cat about.txt</span></div>
-      <header class="banner" aria-hidden="true">── ABOUT ──────────────────────────────────────────────────</header>
-      <h2 class="section-h">about</h2>
-
-      <div class="prose">
-        <p>
-          I am a PhD candidate in History at the South Asia Institute, Heidelberg University,
-          supervised by Prof. Dr. Kama Maclean and funded by a DAAD PhD scholarship. My
-          research sits at the intersection of labour history, the history of time, and the
-          political life of the working class in late-colonial North India.
-        </p>
-        <p>
-          I read for my BA in History at Jamia Millia Islamia, New Delhi (2020), and for my
-          MA in History at the University of Delhi (2022). Before Heidelberg I worked in
-          Delhi's archives on questions of urban labour, communal violence, and the long
-          afterlife of partition.
-        </p>
-      </div>
-    </section>
-
-    <!-- ─── RESEARCH ───────────────────────────────────────────── -->
-    <section id="research" class="cmd-section">
-      <div class="cmd-echo" aria-hidden="true"><span class="prompt">guest@sai-archiv:~$</span> <span class="cmd">ls research/</span></div>
-      <header class="banner" aria-hidden="true">── RESEARCH ───────────────────────────────────────────────</header>
-      <h2 class="section-h">research</h2>
-
-      <article class="entry">
-        <header class="entry-head">
-          <span class="entry-tag">[ dissertation ]</span>
-          <h3 class="entry-title"><em>Time, (Non)Work and Political Consciousness: The Kanpur Working Class, 1914&ndash;47</em></h3>
-        </header>
-        <div class="prose">
-          <p>
-            The project examines how labourers from the agrarian United Provinces adapted
-            to industrial employment in Kanpur — in particular, how their perception and
-            experience of time shifted during this transition, and the political consequences
-            of that shift. Rather than reading the clock as the coloniser of working-class
-            life, I argue that Kanpur's mill-workers resisted, negotiated, and at moments
-            turned the clock into an instrument of their own.
-          </p>
-        </div>
-      </article>
-
-      <article class="entry">
-        <header class="entry-head">
-          <span class="entry-tag">[ interests ]</span>
-        </header>
-        <ul class="star-list">
-          <li>labour history</li>
-          <li>the history of time and industrial discipline</li>
-          <li>partition of India and communalism</li>
-          <li>eighteenth-century South Asia</li>
-          <li>the urban history of Delhi</li>
-          <li>archival method</li>
+      <nav class="panel cmd-nav" aria-label="Sections" data-label="NAV">
+        <span class="prompt" aria-hidden="true">guest@sai-archiv:~$</span>
+        <ul>
+          <li><a href="#about"    data-cmd="cat about.txt">about</a></li>
+          <li><a href="#research" data-cmd="ls research/">research</a></li>
+          <li><a href="#talks"    data-cmd="cat talks.log">talks</a></li>
+          <li><a href="#writing"  data-cmd="ls writing/">writing</a></li>
+          <li><a href="#contact"  data-cmd="finger srajit">contact</a></li>
+          <li><a href="../cv.pdf" data-cmd="open cv.pdf" target="_blank" rel="noopener">cv</a></li>
         </ul>
-      </article>
-    </section>
+      </nav>
 
-    <!-- ─── TALKS ──────────────────────────────────────────────── -->
-    <section id="talks" class="cmd-section">
-      <div class="cmd-echo" aria-hidden="true"><span class="prompt">guest@sai-archiv:~$</span> <span class="cmd">cat talks.log</span></div>
-      <header class="banner" aria-hidden="true">── TALKS ──────────────────────────────────────────────────</header>
-      <h2 class="section-h">talks</h2>
+    </div>
 
-      <ul class="talk-list">
-        <li class="talk">
-          <span class="talk-date" aria-hidden="true">2024-11-06</span>
-          <span class="visually-hidden">6 November 2024.</span>
-          <div class="talk-body">
-            <h3 class="talk-title">
-              <a href="https://www.sai.uni-heidelberg.de/en/events-at-sai/time-is-money-and-work-is-worship-a-case-from-20th-century-north-india-2024-11-06" rel="noopener">
-                Time is Money and Work is Worship: A Case from 20th Century North India
-              </a>
-              <span class="badge-new" aria-label="new"><span aria-hidden="true">[ NEW ]</span></span>
-            </h3>
-            <div class="talk-venue">Colloquium · South Asia Institute, Heidelberg University</div>
-            <p class="talk-abstract">
-              On how working-class populations in twentieth-century agrarian North India
-              encountered and reshaped temporal concepts during their transition to
-              industrial urban life in Kanpur — and how they sometimes turned the clock
-              into an instrument of negotiation and resistance.
+    <!-- ════ TWO-COLUMN GRID: LEFT RAIL + CONTENT ═══════════════ -->
+    <div class="app-grid">
+
+      <!-- ────────── LEFT RAIL: IDENTITY CARD ───────────────── -->
+      <aside class="rail" aria-label="Identity">
+
+        <section class="panel portrait-panel" data-label="IMG 01">
+          <img src="../images/srajit.jpg" alt="Portrait photograph of Srajit M. Kumar" class="portrait" />
+          <figcaption class="img-caption" aria-hidden="true">KUMAR_S.jpg &middot; 600 &times; 800</figcaption>
+        </section>
+
+        <section class="panel whois" aria-labelledby="whois-h" data-label="WHOIS">
+          <h2 id="whois-h" class="visually-hidden">Identity</h2>
+          <dl class="kv">
+            <div><dt>name</dt>    <dd><strong>Srajit M. Kumar</strong></dd></div>
+            <div><dt>role</dt>    <dd>PhD candidate</dd></div>
+            <div><dt>dept</dt>    <dd>History</dd></div>
+            <div><dt>org</dt>     <dd>SAI, Heidelberg</dd></div>
+            <div><dt>advisor</dt> <dd>K. Maclean</dd></div>
+            <div><dt>fund</dt>    <dd>DAAD</dd></div>
+            <div><dt>prior</dt>   <dd>MA Delhi (2022)<br />BA Jamia (2020)</dd></div>
+          </dl>
+        </section>
+
+        <section class="panel contact-card" id="contact" aria-labelledby="contact-h" data-label="CONTACT">
+          <h2 id="contact-h" class="visually-hidden">Contact</h2>
+
+          <address class="addr">
+            South Asia Institute<br />
+            Vo&szlig;stra&szlig;e 2, Bldg 4130<br />
+            69115 Heidelberg, DE
+          </address>
+
+          <ul class="rail-links">
+            <li>
+              <span class="link-key">@</span>
+              <a href="mailto:srajit.kumar@sai.uni-heidelberg.de">srajit.kumar@<wbr />sai.uni-heidelberg.de</a>
+              <!-- TODO(mridul): confirm exact email; SAI page only listed the generic press address -->
+            </li>
+            <li>
+              <span class="link-key">&rsaquo;</span>
+              <a href="https://www.sai.uni-heidelberg.de/en/departments-and-branches/south-asian-history/team/srajit-m-kumar" rel="noopener">sai profile</a>
+            </li>
+            <li>
+              <span class="link-key">&rsaquo;</span>
+              <a href="../cv.pdf" rel="noopener">cv.pdf</a>
+            </li>
+          </ul>
+        </section>
+
+        <section class="panel fields-card" aria-labelledby="fields-h" data-label="FIELDS">
+          <h2 id="fields-h" class="visually-hidden">Research fields</h2>
+          <ul class="chip-list">
+            <li>labour history</li>
+            <li>time-discipline</li>
+            <li>partition</li>
+            <li>communalism</li>
+            <li>C18 South Asia</li>
+            <li>urban Delhi</li>
+          </ul>
+        </section>
+
+      </aside>
+
+      <!-- ────────── RIGHT COLUMN: CONTENT ──────────────────── -->
+      <div class="content">
+
+        <!-- ABOUT -->
+        <section id="about" class="panel section about" data-label="ABOUT.TXT">
+          <div class="cmd-echo" aria-hidden="true"><span class="prompt">$</span> <span class="cmd">cat about.txt</span></div>
+          <h2 class="section-h">about</h2>
+          <div class="prose">
+            <p>
+              I am a PhD candidate in History at the South Asia Institute, Heidelberg
+              University, supervised by Prof. Dr. Kama Maclean and funded by a DAAD PhD
+              scholarship. My research sits at the intersection of <em>labour history</em>,
+              the <em>history of time</em>, and the political life of the working class
+              in late-colonial North India.
+            </p>
+            <p>
+              I read for my BA in History at Jamia Millia Islamia in New Delhi (2020) and
+              for my MA in History at the University of Delhi (2022). Before Heidelberg I
+              worked in Delhi's archives on questions of urban labour, communal violence,
+              and the long afterlife of partition.
             </p>
           </div>
-        </li>
-      </ul>
-    </section>
+        </section>
 
-    <!-- ─── WRITING ────────────────────────────────────────────── -->
-    <section id="writing" class="cmd-section">
-      <div class="cmd-echo" aria-hidden="true"><span class="prompt">guest@sai-archiv:~$</span> <span class="cmd">ls writing/</span></div>
-      <header class="banner" aria-hidden="true">── WRITING ────────────────────────────────────────────────</header>
-      <h2 class="section-h">writing</h2>
+        <!-- DISSERTATION HERO -->
+        <section id="research" class="panel section hero" data-label="DISSERTATION">
+          <div class="cmd-echo" aria-hidden="true"><span class="prompt">$</span> <span class="cmd">cat dissertation.txt</span></div>
 
-      <p class="placeholder">
-        <span class="dim" aria-hidden="true">// directory empty //</span>
-        Publications and working papers will appear here.
-      </p>
-    </section>
+          <div class="hero-meta">
+            <span class="hero-tag">in progress</span>
+            <span class="hero-years" aria-hidden="true">1914 ─── 1947</span>
+          </div>
 
-    <!-- ─── CONTACT ────────────────────────────────────────────── -->
-    <section id="contact" class="cmd-section">
-      <div class="cmd-echo" aria-hidden="true"><span class="prompt">guest@sai-archiv:~$</span> <span class="cmd">finger srajit</span></div>
-      <header class="banner" aria-hidden="true">── CONTACT ────────────────────────────────────────────────</header>
-      <h2 class="section-h">contact</h2>
+          <h2 class="hero-title">
+            <em>Time, (Non)Work and Political Consciousness:</em>
+            <span class="hero-sub">The Kanpur Working Class, 1914&ndash;47</span>
+          </h2>
 
-      <address class="contact-block">
-        <div class="addr-line">South Asia Institute</div>
-        <div class="addr-line">Vo&szlig;stra&szlig;e 2, Building 4130</div>
-        <div class="addr-line">69115 Heidelberg, Germany</div>
-      </address>
+          <div class="prose hero-body">
+            <p>
+              The project examines how labourers from the agrarian United Provinces
+              adapted to industrial employment in Kanpur — in particular, how their
+              perception and experience of time shifted during this transition, and the
+              political consequences of that shift. Rather than reading the clock as the
+              coloniser of working-class life, I argue that Kanpur's mill-workers
+              resisted, negotiated, and at moments turned the clock into an instrument
+              of their own.
+            </p>
+          </div>
 
-      <ul class="links-list">
-        <li>
-          <span class="link-key">email</span>
-          <span class="link-sep" aria-hidden="true">─</span>
-          <a href="mailto:srajit.kumar@sai.uni-heidelberg.de">srajit.kumar@sai.uni-heidelberg.de</a>
-          <!-- TODO(mridul): confirm this is Srajit's actual address; the SAI page only listed the generic press address -->
-        </li>
-        <li>
-          <span class="link-key">profile</span>
-          <span class="link-sep" aria-hidden="true">─</span>
-          <a href="https://www.sai.uni-heidelberg.de/en/departments-and-branches/south-asian-history/team/srajit-m-kumar" rel="noopener">sai.uni-heidelberg.de/.../srajit-m-kumar</a>
-        </li>
-        <li>
-          <span class="link-key">cv</span>
-          <span class="link-sep" aria-hidden="true">─</span>
-          <a href="../cv.pdf" rel="noopener">cv.pdf</a>
-        </li>
-      </ul>
-    </section>
+          <pre class="ascii-rule" aria-hidden="true">
+   ┌─ 1914 ──────┬─ 1928 ──────┬─ 1937 ──────┬─ 1947 ─┐
+   │   war       │   strike    │   election  │  parti │
+   │   labour    │   wave      │   reforms   │  -tion │
+   └─────────────┴─────────────┴─────────────┴────────┘         </pre>
+        </section>
 
-    <!-- ─── TYPEABLE PROMPT (Tier 3) ───────────────────────────── -->
-    <section class="repl-section" aria-labelledby="repl-h">
-      <header class="banner" aria-hidden="true">── PROMPT ─────────────────────────────────────────────────</header>
-      <h2 id="repl-h" class="visually-hidden">Interactive prompt</h2>
+        <!-- INTERESTS -->
+        <section class="panel section interests" data-label="INTERESTS">
+          <div class="cmd-echo" aria-hidden="true"><span class="prompt">$</span> <span class="cmd">ls research/interests/</span></div>
+          <h2 class="section-h">interests</h2>
+          <ul class="big-chips">
+            <li><span class="bullet" aria-hidden="true">★</span> labour history</li>
+            <li><span class="bullet" aria-hidden="true">★</span> history of time &amp; industrial discipline</li>
+            <li><span class="bullet" aria-hidden="true">★</span> partition of India</li>
+            <li><span class="bullet" aria-hidden="true">★</span> communalism</li>
+            <li><span class="bullet" aria-hidden="true">★</span> eighteenth-century South Asia</li>
+            <li><span class="bullet" aria-hidden="true">★</span> urban history of Delhi</li>
+            <li><span class="bullet" aria-hidden="true">★</span> archival method</li>
+          </ul>
+        </section>
 
-      <div class="repl-help">
-        Optional. Type <code>help</code> for available commands. Everything is also reachable through the links above — this prompt is for tinkering only.
-      </div>
+        <!-- TALKS -->
+        <section id="talks" class="panel section talks" data-label="TALKS.LOG">
+          <div class="cmd-echo" aria-hidden="true"><span class="prompt">$</span> <span class="cmd">cat talks.log</span></div>
+          <h2 class="section-h">talks</h2>
 
-      <div class="repl">
-        <span class="prompt" aria-hidden="true">guest@sai-archiv:~$&nbsp;</span>
-        <label for="repl-in" class="visually-hidden">Type a command</label>
-        <input id="repl-in" type="text" class="repl-in" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type 'help'" />
-      </div>
-      <output class="repl-out" id="repl-out" aria-live="polite"></output>
-    </section>
+          <div class="talk-table" role="table" aria-label="Talks">
+            <div class="talk-row talk-head" role="row" aria-hidden="true">
+              <div class="col-date">DATE</div>
+              <div class="col-title">TITLE</div>
+              <div class="col-type">TYPE</div>
+            </div>
 
-    <!-- ─── SYSTEM FOOTER ──────────────────────────────────────── -->
-    <footer class="sys-footer" aria-label="System footer">
-      <hr class="rule-text" aria-hidden="true" />
+            <div class="talk-row" role="row">
+              <div class="col-date" role="cell">
+                <time datetime="2024-11-06">2024<span class="sep">-</span>11<span class="sep">-</span>06</time>
+              </div>
+              <div class="col-title" role="cell">
+                <a href="https://www.sai.uni-heidelberg.de/en/events-at-sai/time-is-money-and-work-is-worship-a-case-from-20th-century-north-india-2024-11-06" rel="noopener" class="talk-link">
+                  Time is Money and Work is Worship: A Case from 20th Century North India
+                </a>
+                <span class="badge-new" aria-label="new"><span aria-hidden="true">[ NEW ]</span></span>
+                <div class="talk-venue">SAI Heidelberg &middot; Colloquium</div>
+                <p class="talk-abstract">
+                  On how working-class populations in twentieth-century agrarian North
+                  India encountered and reshaped temporal concepts during their
+                  transition to industrial urban life in Kanpur — and how they sometimes
+                  turned the clock into an instrument of negotiation and resistance.
+                </p>
+              </div>
+              <div class="col-type" role="cell">
+                <span class="type-chip">COLLOQUIUM</span>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      <div class="footer-banner" aria-hidden="true">
-        [ best viewed in any browser, at any width, since 1999 ]
-      </div>
+        <!-- WRITING -->
+        <section id="writing" class="panel section writing placeholder-panel" data-label="WRITING/">
+          <div class="cmd-echo" aria-hidden="true"><span class="prompt">$</span> <span class="cmd">ls writing/</span></div>
+          <h2 class="section-h">writing</h2>
+          <p class="placeholder">
+            <span class="dim" aria-hidden="true">// directory empty //</span>
+            Publications and working papers will appear here.
+          </p>
+        </section>
 
-      <div class="footer-row" aria-hidden="true">
-        <span class="counter-label">VISITORS:</span>
-        <span class="counter-box" id="visitor-counter">
-          <!-- Static placeholder; replaced by JS with localStorage value if available. -->
-          <span class="digit">0</span><span class="digit">0</span><span class="digit">0</span><span class="digit">4</span><span class="digit">1</span><span class="digit">2</span>
-        </span>
-      </div>
+      </div><!-- /content -->
+    </div><!-- /app-grid -->
 
-      <p class="built-with">
-        Served from a static host
-        <span class="sep" aria-hidden="true">·</span>
-        No JavaScript required to read this page
-        <span class="sep" aria-hidden="true">·</span>
-        &copy; 1999&ndash;<span id="year">2026</span> S. M. Kumar
-      </p>
+    <!-- ════ FULL-WIDTH BOTTOM BAND: REPL + FOOTER ══════════════ -->
+    <div class="bottom-band">
 
-      <p class="version-switch">
-        <a href="../" class="dim">[ v1 — minimal academic ]</a>
-        <span aria-hidden="true">&nbsp;</span>
-        <span class="muted">[ v2 — sai-archiv ]</span>
-      </p>
-    </footer>
+      <section class="panel repl-section" aria-labelledby="repl-h" data-label="PROMPT">
+        <h2 id="repl-h" class="visually-hidden">Interactive prompt</h2>
+
+        <div class="repl-help">
+          Optional. Type <code>help</code> for commands. Everything is also reachable through
+          the links above — this prompt is for tinkering.
+        </div>
+
+        <div class="repl">
+          <span class="prompt" aria-hidden="true">guest@sai-archiv:~$&nbsp;</span>
+          <label for="repl-in" class="visually-hidden">Type a command</label>
+          <input id="repl-in" type="text" class="repl-in" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type 'help'" />
+        </div>
+        <output class="repl-out" id="repl-out" aria-live="polite"></output>
+      </section>
+
+      <footer class="sys-footer" aria-label="System footer">
+        <div class="footer-banner" aria-hidden="true">
+          [ best viewed in any browser, at any width, since 1999 ]
+        </div>
+
+        <div class="footer-row" aria-hidden="true">
+          <span class="counter-label">VISITORS:</span>
+          <span class="counter-box" id="visitor-counter">
+            <span class="digit">0</span><span class="digit">0</span><span class="digit">0</span><span class="digit">4</span><span class="digit">1</span><span class="digit">2</span>
+          </span>
+        </div>
+
+        <p class="built-with">
+          Served from a static host
+          <span class="sep" aria-hidden="true">·</span>
+          No JavaScript required to read this page
+          <span class="sep" aria-hidden="true">·</span>
+          &copy; 1999&ndash;<span id="year">2026</span> S. M. Kumar
+        </p>
+
+        <p class="version-switch">
+          <a href="../" class="dim">[ v1 — minimal academic ]</a>
+          <span aria-hidden="true">&nbsp;&middot;&nbsp;</span>
+          <span class="muted">[ v2 — sai-archiv ]</span>
+        </p>
+      </footer>
+
+    </div>
 
   </main>
 
